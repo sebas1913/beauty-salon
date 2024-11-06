@@ -46,6 +46,9 @@ const LoginForm = () => {
                 password: data.password
             });
 
+            console.log(result);
+            
+
             if (result?.error) {
                 console.log('Ocurrió un error', JSON.parse(result.error));
                 handleError(JSON.parse(result.error));
