@@ -1,31 +1,28 @@
-.inputContainer {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  .inputField {
-    padding: 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    color: #4b5563; 
-    font-size: 1rem;
-  
-    &::placeholder {
-      color: #9ca3af; 
-    }
-  
-    &:focus {
-      outline: none;
-      border-color: transparent;
-      box-shadow: 0 0 0 2px #3b82f6;
-    }
+@import '../../../styles/variables';
 
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  color: #4b5563;
+  font-size: 1rem;
+  font-family: var(--font-principal);
+
+  &:focus {
+    outline: none;
   }
-  
-  .errorMessage {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    color: #ef4444;
-  }
-  
+
+}
+
+.errorMessage {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: $color-error;
+  font-weight: 500;
+}

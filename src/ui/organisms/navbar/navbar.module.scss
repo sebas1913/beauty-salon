@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .container {
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
     background-color: $color-secondary;
     display: flex;
     align-items: center;
@@ -12,16 +12,24 @@
     top: 0;
     z-index: 1;
 
+    
+    .link {
+        text-decoration: none;
+        color: $color-primary;
+        display: flex;
+        align-items: center;
+
+        .title{
+            font-weight: 200;
+            font-size: 1.8rem;
+        }
+    }
 
     .navContainer {
         margin-top: 0.5rem;
         display: flex;
         gap: 2rem;
 
-        .link {
-            text-decoration: none;
-            color: $color-primary;
-        }
     }
 
 }

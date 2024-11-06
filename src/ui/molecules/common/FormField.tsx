@@ -1,7 +1,8 @@
 "use client";
 
 import { Control, Controller, FieldError, FieldValues, Path } from "react-hook-form";
-import { Input } from "../../atoms/Input/Input";
+import { Input } from "@/ui/atoms";
+import Label from "@/ui/atoms/Label";
 
 interface IPropsFormField<T extends FieldValues> {
     label: string;
@@ -17,8 +18,8 @@ export const FormField = <T extends FieldValues>({
     label, type, name, control, error, id, placeholder
 }: IPropsFormField<T>) => {
     return (
-        <div className="">
-            <label htmlFor={id || label.toLowerCase()} className="">{label}</label>
+        <div>
+            <Label htmlFor={id || label.toLowerCase()} className="">{label}</Label>
             <Controller
                 name={name}
                 control={control}

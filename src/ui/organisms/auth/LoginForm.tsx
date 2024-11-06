@@ -7,6 +7,9 @@ import { ErrorResponse, FieldError } from "@/app/core/application/dto/common/err
 import { FormField } from "@/ui/molecules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
+import Title from "@/ui/atoms/Title";
+import Button from "@/ui/atoms/button/Button";
+import styles from './login.module.scss';
 
 const loginSchema = yup.object().shape({
     userName: yup
@@ -74,9 +77,9 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
+        <div className={styles.containerForm}>
             <form onSubmit={handleSubmit(handleLogin)}>
-                <h2>Iniciar sesión</h2>
+                <Title className={styles.title} level={2}>Iniciar sesión</Title>
                 
                 <FormField<ILoginRequest>
                     control={control}
@@ -96,7 +99,7 @@ const LoginForm = () => {
                     placeholder="Ingresa tu contraseña"
                 />
 
-                <button type="submit">Iniciar sesión</button>
+                <Button className="primary" type="submit">Iniciar sesión</Button>
             </form>
         </div>
     );
