@@ -1,0 +1,8 @@
+@import '../../../styles/variables';
+
+.link {
+    text-decoration: none;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+}

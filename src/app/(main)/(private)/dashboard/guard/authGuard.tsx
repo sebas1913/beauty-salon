@@ -1,4 +1,5 @@
 "use client";
+import Spinner from "@/ui/atoms/spinner/spinner";
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -22,7 +23,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
     if(status === 'loading'){
         return(
-            <><h1>Cargando</h1></>
+            <><Spinner/></>
         )
     }
     
