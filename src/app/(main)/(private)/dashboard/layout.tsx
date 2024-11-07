@@ -4,6 +4,7 @@ import Navbar from "@/ui/organisms/navbar/Navbar";
 import AuthGuard from "./guard/authGuard";
 import Button from "@/ui/atoms/button/Button";
 import SubNavigation from "@/ui/molecules/subnavigation/subnavigation";
+import Footer from "@/ui/organisms/footer/Footer";
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {
     const handleSignOut = async () => {
@@ -19,6 +20,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
             </Navbar>
             <SubNavigation></SubNavigation>
             <AuthGuard>{children}</AuthGuard>
+            <Footer />
         </>
     )
 }

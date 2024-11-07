@@ -4,29 +4,33 @@ import PaginationServices from "../paginations/ServicesPagination";
 import { IGetServiceResponse } from "@/app/core/application/dto/services-salon/services-response.dto";
 
 interface TableServicesProps {
-  dataResponse: IGetServiceResponse;
+    dataResponse: IGetServiceResponse;
 }
 
 const TableServices: React.FC<TableServicesProps> = ({ dataResponse }) => {
-  const { content } = dataResponse;
+    const { content } = dataResponse;
 
-  const formattedData = content.map((service) => ({
-    id: service.id,
-    name: service.name,
-    description: service.description,
-    price: service.price,
-  }));
+    const formattedData = content.map((service) => ({
+        // id: service.id,
+        name: service.name,
+        description: service.description,
+        price: service.price,
+    }));
 
-  const headers = ["id", "name", "description", "price"];
+    const headers = [
+        { label: "Nombre del servicio", key: "name" },
+        { label: "Descripción", key: "description" },
+        { label: "Precio", key: "price" },
+    ];
 
-  return (
-    <div>
-      <Table headers={headers} data={formattedData} />
-      <div>
-        <PaginationServices data={dataResponse} />
-      </div>
-    </div>
-  );
+    return (
+        <div>
+            <Table headers={headers} data={formattedData} />
+            <div>
+                <PaginationServices data={dataResponse} />
+            </div>
+        </div>
+    );
 };
 
 export default TableServices;

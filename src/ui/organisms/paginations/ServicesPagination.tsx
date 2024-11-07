@@ -25,7 +25,7 @@ function PaginationServices({ data }: IProps) {
         <div className={styles.paginationContainer}>
             <div>
                 <Button className={styles.button} onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
-                    Regresar
+                    {Icons.paginationPrevious}
                 </Button>
             </div>
 
@@ -33,7 +33,7 @@ function PaginationServices({ data }: IProps) {
 
             <div>
                 <Button className={styles.button} onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-                    Siguiente
+                    {Icons.paginationNext}
                 </Button>
             </div>
 

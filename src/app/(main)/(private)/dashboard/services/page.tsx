@@ -33,10 +33,7 @@ async function ServicesPage({ searchParams }: IProps) {
 
     return (
         <div>
-            <h1>Servicios</h1>
-
             <TableServices dataResponse={data} />
-
         </div>
     );
 }
