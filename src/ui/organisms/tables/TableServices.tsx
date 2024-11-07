@@ -2,7 +2,7 @@ import React from "react";
 import Table from "@/ui/molecules/common/table/Table";
 import PaginationServices from "../paginations/ServicesPagination";
 import { IGetServiceResponse } from "@/app/core/application/dto/services-salon/services-response.dto";
-
+import ButtonAdd from "@/ui/molecules/button-add/ButtonAdd";
 interface TableServicesProps {
     dataResponse: IGetServiceResponse;
 }
@@ -26,9 +26,8 @@ const TableServices: React.FC<TableServicesProps> = ({ dataResponse }) => {
     return (
         <div>
             <Table headers={headers} data={formattedData} />
-            <div>
-                <PaginationServices data={dataResponse} />
-            </div>
+            <PaginationServices data={dataResponse} />
+            <ButtonAdd />
         </div>
     );
 };
