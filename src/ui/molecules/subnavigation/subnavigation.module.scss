@@ -1,0 +1,18 @@
+@import '../../../styles/variables';
+
+.subNav {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    gap: 2rem;
+
+    .link{
+        color: $color-primary;
+        text-decoration: none;
+    }
+
+    .activeLink {
+        font-weight: 800;
+    }
+}

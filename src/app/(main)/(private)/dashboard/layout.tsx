@@ -3,6 +3,7 @@ import { signOut } from "next-auth/react";
 import Navbar from "@/ui/organisms/navbar/Navbar";
 import AuthGuard from "./guard/authGuard";
 import Button from "@/ui/atoms/button/Button";
+import SubNavigation from "@/ui/molecules/subnavigation/subnavigation";
 
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {
     const handleSignOut = async () => {
@@ -16,6 +17,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
             <Navbar>
                 <Button onClick={handleSignOut}>Cerrar sesión</Button>
             </Navbar>
+            <SubNavigation></SubNavigation>
             <AuthGuard>{children}</AuthGuard>
         </>
     )

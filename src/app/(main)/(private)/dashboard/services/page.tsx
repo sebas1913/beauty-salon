@@ -28,7 +28,7 @@ async function ServicesPage({ searchParams }: IProps) {
 
     const servicesSalonService = new ServicesSalonService();
     const page = searchParams.page ? parseInt(searchParams.page) : 1;
-    const size = searchParams.size ? parseInt(searchParams.size) : 6;
+    const size = searchParams.size ? parseInt(searchParams.size) : 10;
     const data = await servicesSalonService.find(page, size);
 
     return (

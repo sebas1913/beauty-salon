@@ -5,14 +5,14 @@ import { Icons } from "@/ui/atoms/Icons";
 import Button from "@/ui/atoms/button/Button";
 import styles from './paginations.module.scss';
 
-interface IProps{
+interface IProps {
     data: IGetServiceResponse;
 }
 
-function PaginationServices({data}: IProps) {
+function PaginationServices({ data }: IProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const currentPage = data.pageable.pageNumber;
+    const currentPage = data.pageable.pageNumber + 1;
     const totalPages = data.totalPages;
 
     const onPageChange = (newPage: number) => {
