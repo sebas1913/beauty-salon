@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { ServicesSalonService } from "@/app/infrastructure/services/services-salon.service";
-import TableServices from "@/ui/organisms/tables/TableServices";
+import ServicesPageTemplate from "@/ui/template/services/servicesTemplate";
 interface IProps {
     searchParams: {
         page: string;
@@ -33,7 +33,7 @@ async function ServicesPage({ searchParams }: IProps) {
 
     return (
         <div>
-            <TableServices dataResponse={data} />
+            <ServicesPageTemplate dataResponse={data} />
         </div>
     );
 }
