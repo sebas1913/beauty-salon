@@ -1,12 +1,19 @@
 "use client";
 import * as yup from "yup";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ICreateServiceRequest } from "@/app/core/application/dto/services-salon/services-request.dto";
-import { ErrorResponse, FieldError } from "@/app/core/application/dto/common/error-response.dto";
 import { FormField } from "@/ui/molecules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Title from "@/ui/atoms/Title";
 import Button from "@/ui/atoms/button/Button";
+import { Content } from "@/app/core/application/dto/services-salon/services-response.dto";
+
+interface IProps {
+    closeModal: () => void;
+    serviceID?: number;
+}
 
 const servicesSechema = yup.object().shape({
     name: yup
@@ -25,30 +32,73 @@ const servicesSechema = yup.object().shape({
 });
 
 
-const ServicesForm = () => {
+const ServicesForm = ({ serviceID, closeModal }: IProps) => {
+    const router = useRouter()
+
     const {
         control,
         handleSubmit,
-        setError,
-        formState: { errors }
+        formState: { errors },
+        setValue
 
     } = useForm<ICreateServiceRequest>({
         mode: "onChange",
         reValidateMode: "onChange",
-        resolver: yupResolver(servicesSechema)
+        resolver: yupResolver(servicesSechema),
     })
 
-    const handleService = async (data: ICreateServiceRequest) => {
-        try {
-            const response = await fetch('/api/services/create',{
-                method: "POST",
-                body: JSON.stringify(data),
-            });
+    useEffect(() => {
+        if (serviceID) {
+            const fetchServiceID = async () => {
+                try {
+                    const response = await fetch(`/api/services/get/${serviceID}`);
+                    const data: Content = await response.json();
 
-            if (!response) {
-                console.log('Error el enviar el formulario :(');
+                    //SetValue propio de hook form
+                    setValue('name', data.name);
+                    setValue('description', data.description);
+                    setValue('price', data.price);
+
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            fetchServiceID();
+        }
+    }, [serviceID]);
+
+
+    const handleService = async (data: ICreateServiceRequest) => {
+
+        try {
+
+            if (serviceID) {
+                const response = await fetch(`/api/services/update/${serviceID}`, {
+                    method: "PUT",
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Actualizado');
                 
+
+                if (!response) {
+                    console.log('Error el enviar el formulario :(');
+                }
+
+            } else {
+                const response = await fetch('/api/services/create', {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                });
+
+                router.refresh();
+
+                if (!response) {
+                    console.log('Error el enviar el formulario :(');
+                }
             }
+
 
         } catch (error) {
             console.log(error);

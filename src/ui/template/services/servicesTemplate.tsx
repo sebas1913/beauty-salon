@@ -11,6 +11,7 @@ interface IProps {
 
 const ServicesPageTemplate: React.FC<IProps> = ({ dataResponse }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [serviceID, setServiceID] = useState<number>();
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -18,15 +19,21 @@ const ServicesPageTemplate: React.FC<IProps> = ({ dataResponse }) => {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setServiceID(undefined);
+    };
+
+    const handleEdit = (id : number) => {
+        setIsModalOpen(true);
+        setServiceID(id);
     };
 
     return (
         <div>
             <ButtonAdd onClick={openModal} />
-            <TableServices dataResponse={dataResponse} />
+            <TableServices dataResponse={dataResponse} onEdit={handleEdit}/>
 
             <Modal isVisible={isModalOpen} onClose={closeModal}>
-                <ServicesForm />
+                <ServicesForm closeModal={closeModal} serviceID={serviceID}/>
             </Modal>
         </div>
     );

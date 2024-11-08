@@ -2,7 +2,7 @@ import styles from './table.module.scss';
 
 export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
     headers: { label: string; key: string }[];
-    data: { [key: string]: string | number }[];
+    data: { [key: string]: string | number | JSX.Element }[];
 }
 
 const Table: React.FC<TableProps> = ({ headers, data, className, ...props }) => {
@@ -20,7 +20,9 @@ const Table: React.FC<TableProps> = ({ headers, data, className, ...props }) => 
                     {data.map((row, rowIndex) => (
                         <tr key={rowIndex}>
                             {headers.map((header, colIndex) => (
-                                <td key={colIndex}>{row[header.key]}</td>
+                                <td key={colIndex}>
+                                    {row[header.key] as React.ReactNode}
+                                </td>
                             ))}
                         </tr>
                     ))}

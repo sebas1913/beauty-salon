@@ -1,4 +1,4 @@
-import { IGetServiceResponse } from "@/app/core/application/dto/services-salon/services-response.dto";
+import { Content, IGetServiceResponse } from "@/app/core/application/dto/services-salon/services-response.dto";
 import { HttpClient } from "../utils";
 import { ICreateServiceRequest } from "@/app/core/application/dto/services-salon/services-request.dto";
 
@@ -19,6 +19,16 @@ export class ServicesSalonService{
         }
     }
 
+    async findById(id: number): Promise<Content> {
+        try {
+            const response = await this.httpClient.get<Content>(`services/${id}`);
+            return response;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+
     async create(body: ICreateServiceRequest) {
         try {
             const newCompany = this.httpClient.post<IGetServiceResponse, ICreateServiceRequest>('services', body);
@@ -28,28 +38,26 @@ export class ServicesSalonService{
         }
     }
 
-    // async put(id: string, body: ICreateServiceRequest) {
-	// 	try {
-	// 		const coders = this.httpClient.put<ICompany, ICreateServiceRequest>(`services/${id}`, body);
-	// 		return coders;
+    async put(id: number, body: ICreateServiceRequest) {
+		try {
+			const response = this.httpClient.put<Content, ICreateServiceRequest>(`services/${id}`, body);
+			return response;
 
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 		throw error;
-	// 	}
-	// }
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	}
     
 
-    async destroy(id: string){
+    async destroy(id: number){
         try {
-            const company =  await this.httpClient.delete(`services/${id}`);
-            return company;
+            const response = await this.httpClient.delete(`services/${id}`);
+            return response;
 
         } catch (error) {
             console.log(error);
             throw error;
         }
     }
-
-
 }
