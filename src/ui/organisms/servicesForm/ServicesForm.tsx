@@ -7,7 +7,6 @@ import { FormField } from "@/ui/molecules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Title from "@/ui/atoms/Title";
 import Button from "@/ui/atoms/button/Button";
-import { ServicesSalonService } from "@/app/infrastructure/services/services-salon.service";
 
 const servicesSechema = yup.object().shape({
     name: yup
@@ -40,9 +39,17 @@ const ServicesForm = () => {
     })
 
     const handleService = async (data: ICreateServiceRequest) => {
-        const service = new ServicesSalonService();
         try {
-            await service.create(data)
+            const response = await fetch('/api/services/create',{
+                method: "POST",
+                body: JSON.stringify(data),
+            });
+
+            if (!response) {
+                console.log('Error el enviar el formulario :(');
+                
+            }
+
         } catch (error) {
             console.log(error);
         }

@@ -8,5 +8,5 @@ export const Icons = {
     paginationNext: <FaChevronRight />,
     paginationPrevious: <FaChevronLeft />,
     add: <IoIosAddCircle size={50}/>,
-    close: <IoIosCloseCircle />
+    close: <IoIosCloseCircle size={25}/>
 }
