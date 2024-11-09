@@ -10,13 +10,29 @@ import Button from "@/ui/atoms/button/Button";
 
 interface TableClientsProps{
     dataResponse: IGetClientResponse;
-    // onEdit: (id: number) => void;
+    onEdit: (id: number) => void;
 }
 
 
-const TableClients: React.FC<TableClientsProps> = ({dataResponse}) => {
+const TableClients: React.FC<TableClientsProps> = ({dataResponse, onEdit}) => {
     const router = useRouter();
     const { content } = dataResponse;
+
+    const handleDelete = async (id: number) => {
+        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este servicio?");
+        if (!isConfirmed) return;
+    
+        try {
+            await fetch(`/api/clients/delete/${id}`, {
+                method: 'DELETE'
+            });
+            console.log('Eliminado');
+            router.refresh();
+    
+        } catch (error) {
+            console.log('Error', error);
+        }
+    };
 
 
     const formatedData = content.map((client) => ({
@@ -28,10 +44,9 @@ const TableClients: React.FC<TableClientsProps> = ({dataResponse}) => {
         role: client.role,
         actions: (
             <div className={styles.actions}>
-                {/* <Button onClick={() => onEdit(service.id)}>{Icons.edit}</Button>
-                <Button onClick={() => handleDelete(service.id)}>{Icons.delete}</Button> */}
-                <Button>{Icons.edit}</Button>
-                <Button>{Icons.delete}</Button>
+                <Button onClick={() => onEdit(client.id)}>{Icons.edit}</Button>
+                <Button onClick={() => handleDelete(client.id)}>{Icons.delete}</Button>
+
             </div>
         ),
     }));
