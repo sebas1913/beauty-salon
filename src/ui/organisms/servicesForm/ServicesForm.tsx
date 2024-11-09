@@ -92,12 +92,14 @@ const ServicesForm = ({ serviceID, closeModal }: IProps) => {
                     body: JSON.stringify(data),
                 });
 
-                router.refresh();
 
                 if (!response) {
                     console.log('Error el enviar el formulario :(');
                 }
             }
+
+            router.refresh();
+            closeModal();
 
 
         } catch (error) {
