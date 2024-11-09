@@ -9,8 +9,8 @@ const SubNavigation: React.FC = () => {
 
     const links = [
         { href: "/dashboard/services", label: "Servicios" },
+        { href: "/dashboard/clients", label: "Clientes" },
         { href: "/dashboard/appointment", label: "Citas" },
-        { href: "/third-page", label: "Página 3" }
     ];
 
     return (
