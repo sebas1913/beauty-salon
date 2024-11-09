@@ -19,7 +19,7 @@ const TableClients: React.FC<TableClientsProps> = ({dataResponse, onEdit}) => {
     const { content } = dataResponse;
 
     const handleDelete = async (id: number) => {
-        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este servicio?");
+        const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar el cliente?");
         if (!isConfirmed) return;
     
         try {
