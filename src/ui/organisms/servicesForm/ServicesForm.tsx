@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { ICreateServiceRequest } from "@/app/core/application/dto/services-salon/services-request.dto";
 import { FormField } from "@/ui/molecules";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Content } from "@/app/core/application/dto/services-salon/services-response.dto";
+import styles from './form.module.scss';
 import Title from "@/ui/atoms/Title";
 import Button from "@/ui/atoms/button/Button";
-import { Content } from "@/app/core/application/dto/services-salon/services-response.dto";
 
 interface IProps {
     closeModal: () => void;
@@ -109,8 +110,8 @@ const ServicesForm = ({ serviceID, closeModal }: IProps) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(handleService)}>
-                <Title level={2}>Servicio</Title>
+            <form className={styles.form} onSubmit={handleSubmit(handleService)}>
+                <Title className={styles.title} level={2}>Servicio</Title>
 
                 <FormField<ICreateServiceRequest>
                     control={control}

@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { Icons } from "@/ui/atoms/Icons";
 import { IGetServiceResponse } from "@/app/core/application/dto/services-salon/services-response.dto";
+import styles from './table.module.scss';
 import Table from "@/ui/molecules/common/table/Table";
 import PaginationServices from "../paginations/ServicesPagination";
-import ButtonAdd from "@/ui/molecules/button-add/ButtonAdd";
 import Button from "@/ui/atoms/button/Button";
 
 interface TableServicesProps {
@@ -38,9 +39,9 @@ const TableServices: React.FC<TableServicesProps> = ({ dataResponse, onEdit }) =
         description: service.description,
         price: service.price,
         actions: (
-            <div>
-                <Button onClick={() => onEdit(service.id)}>Editar</Button>
-                <Button onClick={() => handleDelete(service.id)}>Eliminar</Button>
+            <div className={styles.actions}>
+                <Button onClick={() => onEdit(service.id)}>{Icons.edit}</Button>
+                <Button onClick={() => handleDelete(service.id)}>{Icons.delete}</Button>
             </div>
         ),
     }));
@@ -56,7 +57,6 @@ const TableServices: React.FC<TableServicesProps> = ({ dataResponse, onEdit }) =
         <div>
             <Table headers={headers} data={formattedData} />
             <PaginationServices data={dataResponse} />
-            <ButtonAdd />
         </div>
     );
 };

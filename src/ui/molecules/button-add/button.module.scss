@@ -1,6 +1,8 @@
 @import '../../../styles/variables';
 
-.buttonAdd{
-    bottom: 5rem;
+.buttonAdd {
+    position: fixed;
+    bottom: 2rem;
     right: 2rem;
+    z-index: 1000; 
 }
