@@ -2,7 +2,7 @@ import styles from './table.module.scss';
 
 export interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {
     headers: { label: string; key: string }[];
-    data: { [key: string]: string | number | JSX.Element }[];
+    data: { [key: string]: unknown | JSX.Element }[];
 }
 
 const Table: React.FC<TableProps> = ({ headers, data, className, ...props }) => {

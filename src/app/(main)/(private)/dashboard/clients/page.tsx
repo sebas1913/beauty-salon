@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-import { ServicesSalonService } from "@/app/infrastructure/services/services-salon.service";
-
+import { ClientService } from "@/app/infrastructure/services/client.service";
+import ClientsPageTemplate from "@/ui/template/clients/clientsTemplate";
 interface IProps {
     searchParams: {
         page: string;
@@ -15,8 +15,8 @@ export const generateMetadata = async ({ searchParams }: IProps) => {
     const page = searchParams.page ?? 1;
 
     return {
-        title: `Servicios ${page}`,
-        description: "Servicios de Beauty",
+        title: `Clientes ${page}`,
+        description: "Clientes de Beauty",
     };
 };
 
@@ -26,15 +26,15 @@ async function ClientsPage({ searchParams }: IProps) {
         redirect("/login");
     }
 
-    const servicesSalonService = new ServicesSalonService();
+    const clientService = new ClientService();
     const page = searchParams.page ? parseInt(searchParams.page) : 1;
     const size = searchParams.size ? parseInt(searchParams.size) : 10;
-    const data = await servicesSalonService.find(page, size);
+    const data = await clientService.find(page, size);
+    
 
     return (
         <div>
-            {/* <ClientsPageTemplate dataResponse={data} /> */}
-            <h1>Clientes</h1>
+            <ClientsPageTemplate dataResponse={data} />
         </div>
     );
 }
