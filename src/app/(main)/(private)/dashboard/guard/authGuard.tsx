@@ -1,5 +1,5 @@
 "use client";
-import Spinner from "@/ui/atoms/spinner/spinner";
+import Spinner from "@/ui/atoms/spinner/Spinner";
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
